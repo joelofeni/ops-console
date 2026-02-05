@@ -9,25 +9,27 @@ export default async function RecordDetailPage({
     <div className="space-y-6">
       <h1 className="text-xl font-medium">Record Detail</h1>
 
-      <section className="border border-border p-4 space-y-2">
-        <div className="text-sm text-muted">Record ID</div>
-        <div className="font-mono text-sm">{id}</div>
-      </section>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="border border-border p-4">
+          <div className="text-sm text-muted">Record ID</div>
+          <div className="font-mono text-sm">{id}</div>
+        </div>
 
-      <section className="border border-border p-4 space-y-2">
-        <div className="text-sm text-muted">Status</div>
-        <div className="text-sm">Active</div>
-      </section>
+        <div className="border border-border p-4">
+          <div className="text-sm text-muted">Status</div>
+          <div className="text-sm">Active</div>
+        </div>
 
-      <section className="border border-border p-4 space-y-2">
-        <div className="text-sm text-muted">Ownership</div>
-        <div className="text-sm">Finance Team</div>
-      </section>
+        <div className="border border-border p-4">
+          <div className="text-sm text-muted">Owner</div>
+          <div className="text-sm">Finance Team</div>
+        </div>
 
-      <section className="border border-border p-4 space-y-2">
-        <div className="text-sm text-muted">Last Updated</div>
-        <div className="text-sm">2026-01-20</div>
-      </section>
+        <div className="border border-border p-4">
+          <div className="text-sm text-muted">Last Updated</div>
+          <div className="text-sm">2026-01-20</div>
+        </div>
+      </div>
     </div>
   );
 }
