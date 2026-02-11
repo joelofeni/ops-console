@@ -2,44 +2,44 @@ import { overview, activity } from "./dashboard-data";
 
 export default function OpsDashboard() {
   return (
-    <div className="space-y-8">
-      {/* Page Title */}
-      <div>
-        <h1 className="text-lg font-semibold h-14">Operations Overview</h1>
-        <p className="text-sm text-[var(--color-text-muted)] mt-1">
-          Internal administrative summary.
+    <div className="space-y-10">
+      {/* Header */}
+      <div className="space-y-1">
+        <h1 className="text-lg font-semibold">Overview</h1>
+        <p className="text-sm text-[hsl(var(--color-fg)/0.6)]">
+          Operational summary
         </p>
       </div>
 
-      {/* Overview Cards */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      {/* Overview Metrics */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
         {overview.map((item) => (
           <div
             key={item.label}
-            className="border border-[var(--color-border)] rounded-md p-4"
+            className="border border-[hsl(var(--color-border))] rounded-md p-5"
           >
-            <div className="text-sm text-[var(--color-text-muted)]">
+            <div className="text-sm text-[hsl(var(--color-fg)/0.6)]">
               {item.label}
             </div>
-            <div className="mt-1 text-2xl font-semibold">{item.value}</div>
+
+            <div className="mt-2 text-2xl font-semibold tracking-tight">
+              {item.value}
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Activity Section */}
-      <div className="border border-[var(--color-border)] rounded-md p-4">
-        <h2 className="mb-3 text-sm font-medium">Recent Activity</h2>
+      {/* Activity */}
+      <div className="border border-[hsl(var(--color-border))] rounded-md">
+        <div className="px-5 py-4 border-b border-[hsl(var(--color-border))] text-sm font-medium">
+          Recent Activity
+        </div>
 
-        <ul className="space-y-2 text-sm">
+        <ul className="divide-y divide-[hsl(var(--color-border))] text-sm">
           {activity.map((a) => (
-            <li
-              key={a.id}
-              className="flex flex-col sm:flex-row sm:justify-between"
-            >
+            <li key={a.id} className="flex justify-between px-5 py-3">
               <span>{a.text}</span>
-              <span className="text-[var(--color-text-muted)] sm:text-right">
-                {a.date}
-              </span>
+              <span className="text-[hsl(var(--color-fg)/0.6)]">{a.date}</span>
             </li>
           ))}
         </ul>
