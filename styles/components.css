@@ -1,22 +1,36 @@
 @layer components {
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 2px 8px;
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      line-height: 1.2;
-      border: 1px solid hsl(var(--color-border));
-    }
-  
-    .badge--active {
-      background: hsl(var(--color-success) / 0.1);
-      color: hsl(var(--color-success));
-    }
-  
-    .badge--inactive {
-      background: hsl(var(--color-muted));
-      color: hsl(var(--color-fg));
-    }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    line-height: 1.2;
+    border: 1px solid hsl(var(--color-border));
   }
-  
+
+  .badge--active {
+    background: hsl(var(--color-success) / 0.12);
+    color: hsl(var(--color-success));
+  }
+
+  .badge--pending {
+    background: hsl(var(--color-warning) / 0.12);
+    color: hsl(var(--color-warning));
+  }
+
+  .badge--flagged {
+    background: hsl(28 92% 50% / 0.12); /* muted orange */
+    color: hsl(28 92% 40%);
+  }
+
+  .badge--error {
+    background: hsl(var(--color-danger) / 0.12);
+    color: hsl(var(--color-danger));
+  }
+
+  .badge--inactive {
+    background: hsl(var(--color-muted));
+    color: hsl(var(--color-fg) / 0.7);
+  }
+}

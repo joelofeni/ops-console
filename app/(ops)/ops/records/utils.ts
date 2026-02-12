@@ -1,15 +1,28 @@
 import { RecordItem } from "@/types/globals";
 
+type StatusFilter =
+  | "all"
+  | "active"
+  | "inactive"
+  | "pending"
+  | "flagged"
+  | "error";
+
 export function filterRecords(
   records: RecordItem[],
   search: string,
-  status: "all" | "active" | "inactive",
+  status: StatusFilter,
 ) {
-  return records.filter((r) => {
-    const matchesSearch = r.name.toLowerCase().includes(search.toLowerCase());
+  let result = records;
 
-    const matchesStatus = status === "all" ? true : r.status === status;
+  if (search) {
+    const query = search.toLowerCase();
+    result = result.filter((r) => r.name.toLowerCase().includes(query));
+  }
 
-    return matchesSearch && matchesStatus;
-  });
+  if (status !== "all") {
+    result = result.filter((r) => r.status === status);
+  }
+
+  return result;
 }

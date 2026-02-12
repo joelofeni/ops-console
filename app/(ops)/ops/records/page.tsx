@@ -5,7 +5,14 @@ import Link from "next/link";
 import { records } from "./mock-data";
 import { filterRecords } from "./utils";
 
-type StatusFilter = "all" | "active" | "inactive";
+type StatusFilter =
+  | "all"
+  | "active"
+  | "inactive"
+  | "pending"
+  | "flagged"
+  | "error";
+
 type SortDirection = "asc" | "desc";
 
 export default function RecordsPage() {
@@ -17,10 +24,19 @@ export default function RecordsPage() {
   const statusParam = searchParams.get("status");
   const sortParam = searchParams.get("sort");
 
-  const statusFilter: StatusFilter =
-    statusParam === "active" || statusParam === "inactive"
-      ? statusParam
-      : "all";
+  const allowedStatuses: StatusFilter[] = [
+    "active",
+    "inactive",
+    "pending",
+    "flagged",
+    "error",
+  ];
+
+  const statusFilter: StatusFilter = allowedStatuses.includes(
+    statusParam as StatusFilter,
+  )
+    ? (statusParam as StatusFilter)
+    : "all";
 
   const sortDirection: SortDirection = sortParam === "asc" ? "asc" : "desc";
 
@@ -72,6 +88,9 @@ export default function RecordsPage() {
             <option value="all">All</option>
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
+            <option value="pending">Pending</option>
+            <option value="flagged">Flagged</option>
+            <option value="error">Error</option>
           </select>
 
           <select
@@ -117,18 +136,12 @@ export default function RecordsPage() {
                   </td>
 
                   <td className="px-4 py-3 whitespace-nowrap">
-                    <span
-                      className={`badge ${
-                        r.status === "active"
-                          ? "badge--active"
-                          : "badge--inactive"
-                      }`}
-                    >
+                    <span className={`badge badge--${r.status}`}>
                       {r.status}
                     </span>
                   </td>
 
-                  <td className="px-4 py-3 whitespace-nowrap text-[var(--color-text-muted)] text-[12px]">
+                  <td className="px-4 py-3 whitespace-nowrap text-[12px] text-[var(--color-text-muted)]">
                     {r.updatedAt}
                   </td>
                 </tr>
@@ -138,7 +151,7 @@ export default function RecordsPage() {
                 <tr>
                   <td
                     colSpan={4}
-                    className="px-4 py-6 text-center text-[var(--color-text-muted)] text-sm"
+                    className="px-4 py-6 text-center text-sm text-[var(--color-text-muted)]"
                   >
                     No records found.
                   </td>
