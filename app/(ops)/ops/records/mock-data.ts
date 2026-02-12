@@ -1,10 +1,4 @@
-export type RecordItem = {
-  id: string;
-  name: string;
-  owner: string;
-  status: "active" | "inactive";
-  updatedAt: string;
-};
+import { RecordItem } from "@/types/globals";
 
 export const records: RecordItem[] = [
   {
